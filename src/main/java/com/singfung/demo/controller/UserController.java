@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User regiser(@RequestBody UserDTO dto) {
+    public User register(@RequestBody UserDTO dto) {
         User user = new User(dto);
 
         user.setCreateTime(new Date());
