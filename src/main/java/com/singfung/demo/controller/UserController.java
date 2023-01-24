@@ -33,4 +33,16 @@ public class UserController {
     public User getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
     }
+
+    @PutMapping("/{id}")
+    public User updateUser(@RequestBody UserDTO dto, @PathVariable Integer id) {
+        User responseToPostman = userService.updateUser(dto, id);
+        return responseToPostman;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Integer id)
+    {
+        userService.deleteUserById(id);
+    }
 }
