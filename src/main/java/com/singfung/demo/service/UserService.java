@@ -1,9 +1,12 @@
 package com.singfung.demo.service;
 
+import com.singfung.demo.model.dto.UserDTO;
 import com.singfung.demo.model.entity.User;
 import com.singfung.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * @author sing-fung
@@ -19,8 +22,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User addUser(User user) {
-        user = userRepository.save(user);
-        return user;
+    public User addUser(UserDTO dto) {
+        User user = new User(dto);
+
+        user.setCreateTime(new Date());
+        user.setTs(new Date());
+
+        User responseToController = userRepository.save(user);
+        return responseToController;
+    }
+
+    public User getUserById(Integer id) {
+        return null;
     }
 }

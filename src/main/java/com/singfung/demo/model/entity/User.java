@@ -3,6 +3,7 @@ package com.singfung.demo.model.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.singfung.demo.model.dto.UserDTO;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.Date;
 @Entity
 @Table(name = "demo_user")
 @Data
+@NoArgsConstructor
 public class User {
     @Id
     @Column(name = "id")
