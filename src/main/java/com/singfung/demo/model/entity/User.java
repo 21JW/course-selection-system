@@ -2,6 +2,7 @@ package com.singfung.demo.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.singfung.demo.model.dto.UserDTO;
+import com.singfung.demo.model.enumeration.UserStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -32,6 +33,9 @@ public class User {
 
     @Column(name = "email", nullable = false, unique = true, length = 80)
     String email;
+
+    @Enumerated(EnumType.STRING)
+    UserStatus status;
 
     @Column(name = "create_time", nullable = false, length = 50)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

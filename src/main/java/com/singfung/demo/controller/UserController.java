@@ -2,11 +2,12 @@ package com.singfung.demo.controller;
 
 import com.singfung.demo.model.dto.UserDTO;
 import com.singfung.demo.model.entity.User;
+import com.singfung.demo.model.enumeration.UserStatus;
 import com.singfung.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.util.List;
 
 /**
  * @author sing-fung
@@ -44,5 +45,15 @@ public class UserController {
     public void deleteById(@PathVariable Integer id)
     {
         userService.deleteUserById(id);
+    }
+
+    @PutMapping("/{id}/status/{status}")
+    public void updateUserStatus(@PathVariable Integer id, @PathVariable UserStatus status) {
+        userService.updateUserStatus(id, status);
+    }
+
+    @GetMapping("/status/{status}")
+    public List<User> getUserByUserStatus(@PathVariable UserStatus status) {
+        return userService.findByUserStatus(status);
     }
 }

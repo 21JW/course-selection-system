@@ -2,6 +2,7 @@ package com.singfung.demo.service;
 
 import com.singfung.demo.model.dto.UserDTO;
 import com.singfung.demo.model.entity.User;
+import com.singfung.demo.model.enumeration.UserStatus;
 import com.singfung.demo.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -66,5 +68,23 @@ public class UserService {
         }
 
         userRepository.deleteById(id);
+    }
+
+    public void updateUserStatus(Integer id, UserStatus status) {
+        User user = getUserById(id);
+
+        if(status == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "UserStatus could not be null");
+        }
+
+        user.setStatus(status);
+
+        userRepository.save(user);
+    }
+
+    public List<User> findByUserStatus(UserStatus status) {
+        List<User> response = userRepository.findByStatus(status);
+
+        return response;
     }
 }
