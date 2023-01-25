@@ -26,5 +26,11 @@ public class CourseController {
         return courseService.getCourseById(id);
     }
 
+    @PutMapping("/{id}")
+    public Course updateCourse(@RequestBody CourseDTO dto, @PathVariable Integer id) {
+        Course responseToPostman = courseService.updateCourse(dto, id);
+        return responseToPostman;
+    }
+
 
 }
