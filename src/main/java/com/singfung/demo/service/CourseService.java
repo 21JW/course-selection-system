@@ -52,4 +52,12 @@ public class CourseService
         Course responseToController = courseRepository.save(originalCourse);
         return responseToController;
     }
+
+    public void deleteCourseById(Integer id) {
+        Optional<Course> courseOptionalToController = courseRepository.findById(id);
+        if(!courseOptionalToController.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Course not found");
+        }
+        courseRepository.deleteById(id);
+    }
 }

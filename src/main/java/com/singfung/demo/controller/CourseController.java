@@ -32,5 +32,11 @@ public class CourseController {
         return responseToPostman;
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Integer id)
+    {
+        courseService.deleteCourseById(id);
+    }
+
 
 }
