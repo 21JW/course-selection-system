@@ -56,4 +56,9 @@ public class UserController {
     public List<User> getUserByUserStatus(@PathVariable UserStatus status) {
         return userService.findByUserStatus(status);
     }
+
+    @GetMapping("/username/{username}")
+    public User getUserByUsername(@PathVariable String username) {
+        return userService.findByUsername(username);
+    }
 }
