@@ -2,9 +2,12 @@ package com.singfung.demo.controller;
 
 import com.singfung.demo.model.dto.CourseDTO;
 import com.singfung.demo.model.entity.Course;
+import com.singfung.demo.model.enumeration.CourseStatus;
 import com.singfung.demo.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/course")
@@ -38,5 +41,13 @@ public class CourseController {
         courseService.deleteCourseById(id);
     }
 
+    @PutMapping("/{id}/status/{status}")
+    public void updateCourseStatus(@PathVariable Integer id, @PathVariable CourseStatus status) {
+        courseService.updateCourseStatus(id, status);
+    }
 
+    @GetMapping("/status/{status}")
+    public List<Course> getCourseByCourseStatus(@PathVariable CourseStatus status) {
+        return courseService.findByCourseStatus(status);
+    }
 }

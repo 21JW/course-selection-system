@@ -2,6 +2,7 @@ package com.singfung.demo.service;
 
 import com.singfung.demo.model.dto.CourseDTO;
 import com.singfung.demo.model.entity.Course;
+import com.singfung.demo.model.enumeration.CourseStatus;
 import com.singfung.demo.repository.CourseRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -60,4 +62,23 @@ public class CourseService
         }
         courseRepository.deleteById(id);
     }
+
+    public void updateCourseStatus(Integer id, CourseStatus status) {
+        Course course = getCourseById(id);
+
+        if(status == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CourseStatus could not be null");
+        }
+
+        course.setStatus(status);
+
+        courseRepository.save(course);
+    }
+
+    public List<Course> findByCourseStatus(CourseStatus status) {
+        List<Course> response = courseRepository.findByStatus(status);
+
+        return response;
+    }
+
 }
