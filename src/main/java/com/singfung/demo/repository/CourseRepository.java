@@ -1,6 +1,5 @@
 package com.singfung.demo.repository;
 
-
 import com.singfung.demo.model.entity.Course;
 import com.singfung.demo.model.enumeration.CourseStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +12,5 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course, Serializable> {
     List<Course> findByStatus(CourseStatus status);
 
-    Course findByCoursename(String username);
+    Course findByName(String username);
 }
