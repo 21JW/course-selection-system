@@ -81,4 +81,11 @@ public class CourseService
         return response;
     }
 
+    public List<Course> getAllCourse() {
+        return courseRepository.findByOrderByIdDesc();
+    }
+
+    public List<Course> getCourseByTs() {
+        return courseRepository.findByOrderByTsAsc();
+    }
 }

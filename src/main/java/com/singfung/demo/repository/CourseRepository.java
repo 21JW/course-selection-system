@@ -13,4 +13,8 @@ public interface CourseRepository extends JpaRepository<Course, Serializable> {
     List<Course> findByStatus(CourseStatus status);
 
     Course findByName(String username);
+
+    List<Course> findByOrderByIdDesc();
+
+    List<Course> findByOrderByTsAsc();
 }

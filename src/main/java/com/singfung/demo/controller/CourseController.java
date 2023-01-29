@@ -50,4 +50,14 @@ public class CourseController {
     public List<Course> getCourseByCourseStatus(@PathVariable CourseStatus status) {
         return courseService.findByCourseStatus(status);
     }
+
+    @GetMapping
+    public List<Course> getAllCourse() {
+        return courseService.getAllCourse();
+    }
+
+    @GetMapping("/ts")
+    public List<Course> getCourseByTs() {
+        return courseService.getCourseByTs();
+    }
 }
