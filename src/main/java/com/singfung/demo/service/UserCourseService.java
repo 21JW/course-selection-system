@@ -2,12 +2,16 @@ package com.singfung.demo.service;
 
 import com.singfung.demo.model.dto.UserCourseDTO;
 
+import com.singfung.demo.model.dto.UserCourseResponse;
 import com.singfung.demo.model.entity.UserCourse;
 import com.singfung.demo.repository.UserCourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserCourseService {
@@ -29,7 +33,10 @@ public class UserCourseService {
         userService.getUserById(userId);
         courseService.getCourseById(courseId);
 
-
+        UserCourse existingRecord = userCourseRepository.findByUserIdAndAndCourseId(userId, courseId);
+        if(existingRecord != null) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "You have already chosen this course");
+        }
 
         UserCourse userCourse = new UserCourse(dto);
 
@@ -40,4 +47,7 @@ public class UserCourseService {
         return responseToController;
     }
 
+    public List<UserCourseResponse> findAllUserCourseResponse() {
+        return userCourseRepository.findAllUserCourseResponse();
+    }
 }
