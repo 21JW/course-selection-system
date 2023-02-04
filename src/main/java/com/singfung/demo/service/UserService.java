@@ -29,6 +29,14 @@ public class UserService {
     }
 
     public User addUser(UserDTO dto) {
+        if(userRepository.findByUsername(dto.getUsername()) != null) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "username has been registered");
+        }
+
+        if(userRepository.findByEmail(dto.getEmail()) != null) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "email has been registered");
+        }
+
         User user = new User(dto);
 
         user.setCreateTime(new Date());
@@ -90,5 +98,9 @@ public class UserService {
 
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

@@ -5,8 +5,10 @@ import com.singfung.demo.model.entity.Course;
 import com.singfung.demo.model.enumeration.CourseStatus;
 import com.singfung.demo.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -59,5 +61,10 @@ public class CourseController {
     @GetMapping("/ts")
     public List<Course> getCourseByTs() {
         return courseService.getCourseByTs();
+    }
+
+    @GetMapping("/ts/{startDate}/{endDate}")
+    public List<Course> getCourseByTsBetween(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+        return courseService.getCourseByTsBetween(startDate,endDate);
     }
 }

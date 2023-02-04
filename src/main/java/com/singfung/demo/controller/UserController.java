@@ -5,6 +5,7 @@ import com.singfung.demo.model.entity.User;
 import com.singfung.demo.model.enumeration.UserStatus;
 import com.singfung.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User register(@RequestBody UserDTO dto) {
+    public User register(@RequestBody @Validated(UserDTO.Insert.class)UserDTO dto) {
         User responseToPostman = userService.addUser(dto);
         return responseToPostman;
     }
@@ -60,5 +61,10 @@ public class UserController {
     @GetMapping("/username/{username}")
     public User getUserByUsername(@PathVariable String username) {
         return userService.findByUsername(username);
+    }
+
+    @GetMapping("/email/{email}")
+    public User getUserByEmail(@PathVariable String email) {
+        return userService.findByEmail(email);
     }
 }

@@ -88,4 +88,8 @@ public class CourseService
     public List<Course> getCourseByTs() {
         return courseRepository.findByOrderByTsAsc();
     }
+
+    public List<Course> getCourseByTsBetween(Date startDate,Date endDate) {
+        return courseRepository.findByTsBetween(startDate,endDate);
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.List;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Serializable> {
@@ -17,4 +18,6 @@ public interface CourseRepository extends JpaRepository<Course, Serializable> {
     List<Course> findByOrderByIdDesc();
 
     List<Course> findByOrderByTsAsc();
+
+    List<Course> findByTsBetween(Date startDate,Date endDate);
 }

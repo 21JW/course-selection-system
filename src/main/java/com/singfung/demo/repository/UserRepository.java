@@ -21,4 +21,5 @@ public interface UserRepository extends JpaRepository<User, Serializable>
 
     @Query("SELECT u FROM User u WHERE u.username = ?1 and u.status = 'able' ")
     User findByUsername(String username);
+    User findByEmail(String email);
 }

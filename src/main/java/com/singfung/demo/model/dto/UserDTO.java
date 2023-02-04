@@ -2,6 +2,7 @@ package com.singfung.demo.model.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -18,7 +19,7 @@ public class UserDTO
     @NotBlank(message = "password cannot be empty", groups = {Insert.class})
     String password;
 
-    @NotBlank(message = "email cannot be empty", groups = {Insert.class})
+    @Email(message = "email cannot be empty", groups = {Insert.class})
     String email;
 
     public interface Update {}
