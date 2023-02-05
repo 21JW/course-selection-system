@@ -14,13 +14,16 @@ import java.util.Date;
 @Table(name = "course")
 @Data
 @NoArgsConstructor
-public class Course {
+public class Course implements IWithPosition{
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(name = "name", nullable = false, unique = true, length = 30)
+    @Column(name = "position")
+    Integer position;
+
+    @Column(name = "name", nullable = false,length = 30)
     String name;
 
     @Column(name = "create_time", nullable = false, length = 50)
@@ -37,4 +40,6 @@ public class Course {
     public Course(CourseDTO dto) {
         BeanUtils.copyProperties(dto, this);
     }
+
+
 }

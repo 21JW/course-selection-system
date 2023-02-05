@@ -14,6 +14,9 @@ public class CourseDTO
     @NotBlank(message = "name cannot be empty", groups = {Insert.class})
     String name;
 
+    @NotBlank(message = "position cannot be empty", groups = {Insert.class})
+    Integer position;
+
     public interface Update {}
 
     public interface Insert {}
