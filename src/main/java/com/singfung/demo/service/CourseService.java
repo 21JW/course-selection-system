@@ -1,6 +1,7 @@
 package com.singfung.demo.service;
 
 import com.singfung.demo.model.dto.CourseDTO;
+import com.singfung.demo.model.dto.SetPositionRequest;
 import com.singfung.demo.model.entity.Course;
 import com.singfung.demo.model.enumeration.CourseStatus;
 import com.singfung.demo.repository.CourseRepository;
@@ -92,4 +93,27 @@ public class CourseService
     public List<Course> getCourseByTsBetween(Date startDate,Date endDate) {
         return courseRepository.findByTsBetween(startDate,endDate);
     }
+
+    public List<Course> setPosition(SetPositionRequest data)
+    {
+        Integer id = data.getId();
+        if (id == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Bad Request.Please provide id");
+
+        Integer position = data.getPosition();
+        if (position == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Bad Request.Please provide position");
+        if (position < 1) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Bad Request");
+
+        Course course=getCourseById(id);
+        if (course == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Course doesn't exist");
+
+        List<Course> list = courseRepository.findByOrderByPositionAsc();
+        List<Course> changedList = AppUtills.setPositionInList(course, list, position);
+
+        if (changedList.size() > 0) courseRepository.saveAll(changedList);
+
+        list = courseRepository.findByOrderByPositionAsc();
+
+        return list;
+    }
+
 }

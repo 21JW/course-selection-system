@@ -20,4 +20,6 @@ public interface CourseRepository extends JpaRepository<Course, Serializable> {
     List<Course> findByOrderByTsAsc();
 
     List<Course> findByTsBetween(Date startDate,Date endDate);
+
+    List<Course> findByOrderByPositionAsc();
 }

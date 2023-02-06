@@ -1,6 +1,7 @@
 package com.singfung.demo.controller;
 
 import com.singfung.demo.model.dto.CourseDTO;
+import com.singfung.demo.model.dto.SetPositionRequest;
 import com.singfung.demo.model.entity.Course;
 import com.singfung.demo.model.enumeration.CourseStatus;
 import com.singfung.demo.service.CourseService;
@@ -20,6 +21,7 @@ public class CourseController {
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
+
     @PostMapping
     public Course addCourse(@RequestBody CourseDTO dto) {
         Course responseToPostman = courseService.addCourse(dto);
@@ -38,8 +40,7 @@ public class CourseController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Integer id)
-    {
+    public void deleteById(@PathVariable Integer id) {
         courseService.deleteCourseById(id);
     }
 
@@ -65,6 +66,13 @@ public class CourseController {
 
     @GetMapping("/ts/{startDate}/{endDate}")
     public List<Course> getCourseByTsBetween(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
-        return courseService.getCourseByTsBetween(startDate,endDate);
+        return courseService.getCourseByTsBetween(startDate, endDate);
+    }
+
+    @GetMapping("/position")
+    public List<Course> getListByPosition(@RequestBody SetPositionRequest data) {
+        return courseService.setPosition(data);
     }
 }
+
+
