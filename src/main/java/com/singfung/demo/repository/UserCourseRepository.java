@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface UserCourseRepository extends JpaRepository<UserCourse, Serializable> {
-    UserCourse findByUserIdAndAndCourseId(Integer userId, Integer courseId);
+    UserCourse findByUserIdAndCourseId(Integer userId, Integer courseId);
 
     @Query("SELECT new com.singfung.demo.model.dto.UserCourseResponse(uc, u, c) FROM UserCourse uc, User u, Course c WHERE uc.userId = u.id and uc.courseId = c.id order by uc.id desc ")
     List<UserCourseResponse> findAllUserCourseResponse();

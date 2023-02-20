@@ -13,7 +13,7 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course, Serializable> {
     List<Course> findByStatus(CourseStatus status);
 
-    Course findByName(String username);
+    Course findByCoursename(String coursename);
 
     List<Course> findByOrderByIdDesc();
 

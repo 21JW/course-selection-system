@@ -5,6 +5,7 @@ import com.singfung.demo.model.entity.User;
 import com.singfung.demo.model.enumeration.UserStatus;
 import com.singfung.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +27,9 @@ public class UserController {
     }
 
     @PostMapping
-    public User register(@RequestBody @Validated(UserDTO.Insert.class)UserDTO dto) {
+    public ResponseEntity<?> Register(@RequestBody @Validated(UserDTO.Insert.class) UserDTO dto) {
         User responseToPostman = userService.addUser(dto);
-        return responseToPostman;
+        return ResponseEntity.ok(responseToPostman);
     }
 
     @GetMapping("/{id}")
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@RequestBody UserDTO dto, @PathVariable Integer id) {
+    public User updateUser(@RequestBody @Validated(UserDTO.Update.class) UserDTO dto, @PathVariable Integer id) {
         User responseToPostman = userService.updateUser(dto, id);
         return responseToPostman;
     }

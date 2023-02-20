@@ -24,7 +24,7 @@ public class Course implements IWithPosition{
     Integer position;
 
     @Column(name = "name", nullable = false,length = 30)
-    String name;
+    String coursename;
 
     @Column(name = "create_time", nullable = false, length = 50)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

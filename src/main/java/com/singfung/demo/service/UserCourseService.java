@@ -33,7 +33,7 @@ public class UserCourseService {
         userService.getUserById(userId);
         courseService.getCourseById(courseId);
 
-        UserCourse existingRecord = userCourseRepository.findByUserIdAndAndCourseId(userId, courseId);
+        UserCourse existingRecord = userCourseRepository.findByUserIdAndCourseId(userId, courseId);
         if(existingRecord != null) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "You have already chosen this course");
         }

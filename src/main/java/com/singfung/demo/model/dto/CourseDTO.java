@@ -2,6 +2,7 @@ package com.singfung.demo.model.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -11,10 +12,11 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class CourseDTO
 {
-    @NotBlank(message = "name cannot be empty", groups = {Insert.class})
-    String name;
+    @NotBlank(message = "coursename cannot be empty", groups = {Insert.class})
+    String coursename;
 
-    @NotBlank(message = "position cannot be empty", groups = {Insert.class})
+
+    @Min(value = 1, message = "position should be greater than 1", groups = {Update.class, Insert.class})
     Integer position;
 
     public interface Update {}

@@ -14,6 +14,6 @@ public class UserCourseResponse {
     public UserCourseResponse(UserCourse userCourse, User user, Course course) {
         this.id = userCourse.getId();
         this.username = user.getUsername();
-        this.courseName = course.getName();
+        this.courseName = course.getCoursename();
     }
 }
