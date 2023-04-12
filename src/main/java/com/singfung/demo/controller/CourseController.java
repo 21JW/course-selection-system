@@ -73,6 +73,12 @@ public class CourseController {
     public List<Course> getListByPosition(@RequestBody SetPositionRequest data) {
         return courseService.setPosition(data);
     }
+
+    @GetMapping("/coursename/{coursename}")
+    public Course getCourseByCoursename(@PathVariable String coursename)
+    {
+        return courseService.findByCoursename(coursename);
+    }
 }
 
 

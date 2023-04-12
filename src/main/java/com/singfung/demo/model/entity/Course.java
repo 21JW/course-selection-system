@@ -41,5 +41,8 @@ public class Course implements IWithPosition{
         BeanUtils.copyProperties(dto, this);
     }
 
-
+    public Course(String coursename, Integer position) {
+        this.coursename = coursename;
+        this.position = position;
+    }
 }

@@ -25,7 +25,8 @@ public class CourseService
         this.courseRepository = courseRepository;
     }
     public Course addCourse(CourseDTO dto) {
-        Course course = new Course(dto);
+        //Course course = new Course(dto);
+        Course course = new Course(dto.getCoursename(), dto.getPosition());
 
         course.setCreateTime(new Date());
         course.setTs(new Date());
@@ -114,6 +115,11 @@ public class CourseService
         list = courseRepository.findByOrderByPositionAsc();
 
         return list;
+    }
+
+    public Course findByCoursename(String coursename)
+    {
+        return courseRepository.findByCoursename(coursename);
     }
 
 }

@@ -10,7 +10,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 @Repository
-public interface CourseRepository extends JpaRepository<Course, Serializable> {
+public interface
+CourseRepository extends JpaRepository<Course, Serializable> {
     List<Course> findByStatus(CourseStatus status);
 
     Course findByCoursename(String coursename);
