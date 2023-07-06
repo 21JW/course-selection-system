@@ -2,6 +2,7 @@ package com.singfung.demo.controller;
 import com.singfung.demo.model.dto.UserCourseDTO;
 import com.singfung.demo.model.dto.UserCourseResponse;
 import com.singfung.demo.model.entity.UserCourse;
+import com.singfung.demo.model.vo.UserCourseVO;
 import com.singfung.demo.service.UserCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,10 @@ public class UserCourseController {
     @GetMapping
     public List<UserCourseResponse> getAllUserCourseResponse() {
         return userCourseService.findAllUserCourseResponse();
+    }
+
+    @GetMapping("/v2")
+    public List<UserCourseVO> getAllUserCourseVO() {
+        return userCourseService.findAllUserCourseVO();
     }
 }
