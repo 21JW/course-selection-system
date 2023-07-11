@@ -1,43 +1,37 @@
-## Flight Booking System
+## Course Selection System
 
 
 ## Prerequisites
 * Java 8
-* MySQL 8.0.15 or higher version
+* Oracle
 * Maven
 
 ## Technologies used
 * Spring Boot 2.2.2
-* MyBatis
-* MongoDB
+* Hibernate
 
 ## How to run this project
 * Clone this project in IntelliJ IDEA;
-* Modify`\src\main\resources\application.properties`: replace `spring.datasource.username` and `spring.datasource.password` with your MySQL's username and password respectively;
-* Make sure there is no database called `mybatis_template` in MySQL;
-* Run `\src\main\java\com\example\mybatis_practice_user\MybatisPracticeUserApplication.java` (tables will be created automatically).
+* Make sure there is no database called `HIBERNATE_DEMO` in Oracle;
+* Run `\src\main\java\com\singfung\demo\HibernateTemplateApplication.java` (tables will be created automatically).
 
 ## Tables
 
-Three tables are created for this project, which are **flight**, **demo_user2** and **user_flight**.
+Three tables are created for this project, which are **COURSE**, **DEMO_USER** and **USER_COURSE**.
 
-### flight
+### COURSE
 
-this table stores the basic information of flight
+this table stores the basic information of courses
 
 | Field | Type | Key | Nullable | Unique | Note |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | id | char(36) | Yes | | Yes | primary key |
-| company | varchar(255) | | Yes | |company name|
-| flight_name | varchar(20) | | Yes | Yes | each flight_name has a unique code |
-| departure | varchar(255) | | Yes | | departure city |
-| destination | varchar(255) | | Yes | | destination city|
+| name | varchar(255) | | Yes | |course name|
+| status | varchar(255) | | Yes | | whether this course is active or not |
 | create_time | datetime | | | | the time that this row was inserted |
 | ts | datetime | | | | the last time that created or modified this row |
-| price | INT | | Yes | | flight price |
-| depart_time | datetime | | | | the time that the flight departs |
 
-### demo_user2
+### DEMO_USER
 
 this table stores the basic information of user
 
@@ -51,48 +45,34 @@ this table stores the basic information of user
 | create_time | datetime | | | | the time that this row was inserted |
 | ts | datetime | | | | the last time that created or modified this row |
 
-### user_flight
+### USER_COURSE
 
-this table stores the basic information of user_flight
+this table stores the basic information of USER_COURSE
 
 | Field | Type | Key | Nullable | Unique | Note |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | id | char(36) | Yes | | Yes | primary key |
 | user_id | char(36) | | Yes | | the id of user who takes this flight |
-| flight_id | char(36) | | Yes | | the id of flight which is taken by a user |
+| course_id | char(36) | | Yes | | the id of flight which is taken by a user |
 | create_time | datetime | | | | the time that this row was inserted |
 | ts | datetime | | | | the last time that created or modified this row |
 
-### mongo_flight
-
-this table stores the basic information of flight booking status
-
-| Field | Type | Key | Nullable | Unique | Note |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| flightId | char(36) | Yes | | Yes | primary key |
-| capacity | char(36) | | Yes | | passengers capacity of this flight |
-| available | char(36) | | Yes | | the remaining capacity of this flight |
 
 ## Logic
 
-### flight
-Before **inserting** a flight in record, back-end should check:
-1. whether fligth_name and its depart time exist or not; ✔
+### COURSE
+Before **inserting** a course in record, back-end should check:
+1. whether the coursename exist or not; ✔
 2. whether all fields except note are not null and valid. ✔
 
-### demo_user2
+### DEMO_USER
 Before **inserting** an user in record, back-end should check:
 1. whether username and email address exist or not; ✔
 2. whether all fields except note are not null and valid. ✔
 
-### user_flight
+### USER_COURSE
 Before **inserting** an user_fligth in record, back-end should check:
-1. whether the user has booked that flight✔
-2. whether all fields except note are not null and valid. ✔
-
-### mongo_flight
-Before **inserting** an user_fligth in record, back-end should check:
-1. whether the flight is created✔
+1. whether the user has choosen that flight✔
 2. whether all fields except note are not null and valid. ✔
 
 
