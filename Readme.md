@@ -78,20 +78,18 @@ Before **inserting** an user_fligth in record, back-end should check:
 
 ## APIs
 
-### flight
-1. add flight
-2. get flight by id
-3. update flight by id
-4. Search flight by departure, destination,start time, end time and order by price.
+### COURSE
+1. add course
+2. get course by id or coursename
+3. update course by id
+4. Search course
 
-### user
+### DEMO_USER
 1. add user
 2. get user by id or email
 3. update user by id
-4. get user by idlist
 
-### user_flight & mongo_flight
-1. add user_flight(connect user with a flight)
-2. delete user_flight(disconnect user with a flight)
-the above two APIs use MongoDB to check flights' availability  
-3. get all user_flights responses
+### USER_COURSE 
+1. add user_course(connect an user with a course)
+2. delete user_course(disconnect an user with a course)
+3. get all user_course responses
